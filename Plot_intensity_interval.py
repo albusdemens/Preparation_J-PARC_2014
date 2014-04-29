@@ -4,6 +4,7 @@
 # histogram found using Histogram_2D.py
 
 import pyfits
+from scipy import ndimage
 import numpy as np
 from numpy import *
 from matplotlib import pyplot as plt
@@ -17,7 +18,7 @@ size = 512
 img_filtered = ndarray((size, size), int)
 for i in range(0,size):
   for j in range(0, size):
-    if img[i,j] in range(45, 150):
+    if img[i,j] in range(50, 110):
       img_filtered[i,j] = img[i,j]
     else:
       img_filtered[i,j] = 0
