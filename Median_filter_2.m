@@ -7,23 +7,21 @@
 clc;
 clear all;
 close all;
-k = 80;
-j=0;
+k = 42;
+j = 0;
 lower_value = k-2;
 higher_value = k+2;
 number_images = 2733;
+average_partial = 0;
 for i=1:number_images,
    s = sprintf('/Volumes/ALBERTO_HD/Data_ENGIN-X_May2013/AntonX/RoundRobin_Face5_2/Image 18_%05i.fits',i);
    B = uint16(fitsread(s));
    A(:,:,:,i) = B/mean2(B);
+   average_partial = average_partial+mean2(B);
 end
-a = zeros(number_images);
-for i = 1:number_images
-    a = a+A(:,:,:,i);
-end
-mean_all_images = a/number_images;
+mean_all_images = average_partial/number_images;
+
 M = median(A,4)*mean_all_images;
-size(M)
 
 image_original = sprintf('/Volumes/ALBERTO_HD/Data_ENGIN-X_May2013/AntonX/RoundRobin_Face5_2/Image 18_%05i.fits',k);
 next_image = sprintf('/Volumes/ALBERTO_HD/Data_ENGIN-X_May2013/AntonX/RoundRobin_Face5_2/Image 18_%05i.fits',k+1);
@@ -37,14 +35,14 @@ image_clean =  double(IMAGE_ORIGINAL) - double(M);
 for m=1:512,
     for n = 1:512,
         pixel = image_clean(m,n);
-        if pixel > 1
+        if pixel > 20
             image_clean_threshold(m,n) = image_clean(m,n);
         end
     end
 end
 
 figure;
-imagesc(image_clean_threshold);
+imagesc(image_clean_threshold); colorbar;
 %figure;
 %imagesc(IMAGE_ORIGINAL);
 figure;

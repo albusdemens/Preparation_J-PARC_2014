@@ -54,8 +54,8 @@ imagesc(MEDIAN_filtered);
 %To isolate the extinction spots, we subtract the result of the median from
 %the original image
 
-Image_cleaned = A - B;%MEDIAN;
-Image_cleaned_1 = A - E;%MEDIAN_1;
+Image_cleaned = A - MEDIAN;
+Image_cleaned_1 = A - MEDIAN_1;
 figure;
 imagesc(Image_cleaned);
 figure;
