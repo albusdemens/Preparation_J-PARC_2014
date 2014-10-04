@@ -13,7 +13,7 @@ import matplotlib.cm as cm
 from skimage import data, img_as_float
 from skimage import exposure
 
-file = pyfits.open('/Users/Alberto/Desktop/Test_image_raw.fits')
+file = pyfits.open('/Users/Alberto/Desktop/Filtered_image.fits')
 img = file[0].data
 #img_adapteq = exposure.equalize_adapthist(data, clip_limit=0.04)
 #img_eq = exposure.equalize_hist(img_adapteq)
